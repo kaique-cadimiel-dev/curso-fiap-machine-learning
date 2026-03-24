@@ -1,3 +1,4 @@
+import os
 from utils import (
     calcular_manejo_de_insumos, 
     mostrar_dados, 
@@ -18,6 +19,7 @@ def menu():
 2 - Listar dados
 3 - Atualizar dados
 4 - Deletar dados
+5 - Ver Estatísticas (R)
 0 - Sair
 ========================
 """)
@@ -46,6 +48,10 @@ def menu():
         elif opcao == "4":
             deletar_dado(vetor_dados)
             salvar_csv(vetor_dados)
+
+        elif opcao == "5":
+            print("\n📊 Executando análise estatística em R...\n")
+            os.system("Rscript analise.R")
 
         elif opcao == "0":
             print("👋 Saindo do programa...")
