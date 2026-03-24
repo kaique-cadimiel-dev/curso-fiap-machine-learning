@@ -1,0 +1,12 @@
+{
+    "culturas": [
+        {
+            "name": "Café",
+            "geometric_shape": ["Retangulo", "Quadrado", "Linear"]
+        },
+        {
+            "name": "Soja",
+            "geometric_shape": ["Linear"]
+        }
+    ]
+}
