@@ -1,54 +1,41 @@
-from tabulate import tabulate
-import locale
-import json
+from utils import calcular_manejo_de_insumos, mostrar_dados, atualizar_dado, deletar_dado, read_data
 
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+def menu():
+    vetor_dados = []
 
-def read_data(path: str) -> dict:
-    with open(path  , "r") as file:
-        dados = json.load(file)
-    return dados
+    while True:
+        print("""
+========= MENU =========
+1 - Inserir dados
+2 - Listar dados
+3 - Atualizar dados
+4 - Deletar dados
+0 - Sair
+========================
+""")
 
-def calcular_area() -> str:
-    """
-    Para calcular a area utiliza-se a formula b * a / 2
-    """
-    baseInput:float = float(input("Digite base em metro, formato inteiro: ").replace(".", ""))
-    alturaInput:float = float(input("Digite altura em, formato inteiro: ").replace(".", ""))
-    result: float = (baseInput * alturaInput) / 2
-    
-    return result
+        opcao = input("Escolha uma opção: ")
 
-def calcular_manejo_de_insumos(cultura: str):
-    """
-    # 1. Converter área de m² para hectares
-    hectares = area_m2 / 10000
+        if opcao == "1":
+            cultura = input("Digite a cultura (ex: soja): ")
+            resultado = calcular_manejo_de_insumos(cultura)
+            vetor_dados.append(resultado)
+            print("✅ Dados inseridos!\n")
 
-    # 2. Calcular dose total de fosforo para a área
-    dose_total_fosforo = dose_por_hectar * hectares
+        elif opcao == "2":
+            mostrar_dados(vetor_dados)
 
-    # 3. Converter dose de fosforo em kg de fertilizante
-    fertilizante_kg = dose_total_fosforo / (teor_fertilizante / 100)
+        elif opcao == "3":
+            atualizar_dado(vetor_dados)
 
-    # Onde:
-    # area_m2 = área do terreno em m²
-    # dose_por_hectar = quantidade recomendada de fosforo por hectare
-    # teor_fertilizante = % de fosforo no fertilizante
-    """
-    dados = read_data("./data.json")
-    area = calcular_area()
-    hectares = area / 10000
-    dose_total_fosforo = dados[cultura]["qnt_fosforo_por_hectar_kg"] * hectares
-    percentual_fertilizante = dados[cultura]["teor_fertilizante"] / 100
-    fertilizante_kg = dose_total_fosforo / percentual_fertilizante
+        elif opcao == "4":
+            deletar_dado(vetor_dados)
 
-    return tabulate([
-        ["Área (m²)", f"{area:.2f}"],
-        ["Área (hectares)", f"{hectares:.4f}"],
-        ["Dose total de fosforo (kg)", f"{dose_total_fosforo:.2f}"],
-        ["Quantidade de fertilizante (kg)", f"{fertilizante_kg:.2f}"]
-    ], headers=["Métrica", "Valor"], tablefmt="grid")
+        elif opcao == "0":
+            print("👋 Saindo do programa...")
+            break
 
+        else:
+            print("❌ Opção inválida!\n")
 
-# print(calcular_area())
-print(calcular_manejo_de_insumos("soja"))
+menu()
