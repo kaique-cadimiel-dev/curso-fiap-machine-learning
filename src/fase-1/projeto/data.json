@@ -1,12 +1,12 @@
 {
-    "culturas": [
-        {
-            "name": "Café",
-            "geometric_shape": ["Retangulo", "Quadrado", "Linear"]
-        },
-        {
-            "name": "Soja",
-            "geometric_shape": ["Linear"]
-        }
-    ]
+  "soja": {
+    "qnt_fosforo_por_hectar_kg": 30,
+    "teor_fertilizante": 48,
+    "instrucoes": "Aplicar próximo à semente, evitando contato direto para não causar fitotoxicidade."
+  },
+  "cafe": {
+    "qnt_fosforo_por_hectar_kg": 100,
+    "teor_fertilizante": 18,
+    "instrucoes": "Aplicar na cova ou sulco de plantio, distribuindo ao redor da muda para estimular o desenvolvimento radicular."
+  }
 }
