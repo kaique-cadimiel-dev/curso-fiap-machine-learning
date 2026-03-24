@@ -1,13 +1,54 @@
 from tabulate import tabulate
 import locale
 import json
+import csv
+import os
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+
+FILE_PATH = "dados.csv"
 
 def read_data(path: str) -> dict:
     with open(path  , "r") as file:
         dados = json.load(file)
     return dados
+
+def salvar_csv(vetor, file_path=FILE_PATH):
+    """
+    Salva os dados do vetor em um arquivo CSV.
+    """
+    if not vetor:
+        with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+            pass
+        return
+
+    colunas = vetor[0].keys()
+    with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=colunas)
+        writer.writeheader()
+        writer.writerows(vetor)
+
+def carregar_csv(file_path=FILE_PATH):
+    """
+    Carrega os dados do arquivo CSV para um vetor (lista de dicionários).
+    """
+    if not os.path.exists(file_path):
+        return []
+
+    vetor = []
+    try:
+        with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                # Converter valores numéricos de volta para float
+                row["area_m2"] = float(row["area_m2"])
+                row["hectares"] = float(row["hectares"])
+                row["fosforo"] = float(row["fosforo"])
+                row["fertilizante"] = float(row["fertilizante"])
+                vetor.append(row)
+    except Exception as e:
+        print(f"⚠️ Erro ao carregar CSV: {e}")
+    return vetor
 
 def calcular_area() -> str:
     """

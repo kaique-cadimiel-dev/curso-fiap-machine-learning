@@ -1,7 +1,15 @@
-from utils import calcular_manejo_de_insumos, mostrar_dados, atualizar_dado, deletar_dado, read_data
+from utils import (
+    calcular_manejo_de_insumos, 
+    mostrar_dados, 
+    atualizar_dado, 
+    deletar_dado, 
+    read_data,
+    salvar_csv,
+    carregar_csv
+)
 
 def menu():
-    vetor_dados = []
+    vetor_dados = carregar_csv()
 
     while True:
         print("""
@@ -18,18 +26,26 @@ def menu():
 
         if opcao == "1":
             cultura = input("Digite a cultura (ex: soja): ")
-            resultado = calcular_manejo_de_insumos(cultura)
-            vetor_dados.append(resultado)
-            print("✅ Dados inseridos!\n")
+            try:
+                resultado = calcular_manejo_de_insumos(cultura)
+                vetor_dados.append(resultado)
+                salvar_csv(vetor_dados)
+                print("✅ Dados inseridos e salvos em CSV!\n")
+            except KeyError:
+                print(f"❌ Cultura '{cultura}' não encontrada no banco de dados.\n")
+            except Exception as e:
+                print(f"❌ Erro ao inserir dados: {e}\n")
 
         elif opcao == "2":
             mostrar_dados(vetor_dados)
 
         elif opcao == "3":
             atualizar_dado(vetor_dados)
+            salvar_csv(vetor_dados)
 
         elif opcao == "4":
             deletar_dado(vetor_dados)
+            salvar_csv(vetor_dados)
 
         elif opcao == "0":
             print("👋 Saindo do programa...")
@@ -38,4 +54,5 @@ def menu():
         else:
             print("❌ Opção inválida!\n")
 
-menu()
+if __name__ == "__main__":
+    menu()
