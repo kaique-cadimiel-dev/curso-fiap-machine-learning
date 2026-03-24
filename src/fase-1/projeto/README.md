@@ -1,5 +1,31 @@
 # Farm Tech Solution - Play no desenvolvimento
 
+## Instruções para rodar projeto
+
+1. Clone o repositório
+```shell
+git clone git@github.com:kaique-cadimiel-dev/curso-fiap-machine-learning.git
+
+```
+
+2. Navegue até a pasta do projeto
+```shell
+cd curso-fiap-machine-learning/src/fase-1/projeto
+
+```
+
+3. Instale as dependências necessárias
+```shell
+pip install -r requirements.txt
+
+```
+
+4. Execute o programa principal
+```shell
+python main.py
+
+```
+
 ## Introdução:
 
 Você e seu grupo estão na Startup FarmTech Solutions, trabalhando na equipe de Dev., e obviamente, vocês podem usar o ChatGPT ou Germini ou outra Inteligência Artificial (IA) de seu interesse para ajudar com essa tarefa — a FIAP não condena o uso de IAs em seus estudos, desde que o aluno tenha o olhar crítico para filtrar os erros e acertos das respostas propostas por elas.
