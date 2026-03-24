@@ -4,7 +4,6 @@ from utils import (
     mostrar_dados, 
     atualizar_dado, 
     deletar_dado, 
-    read_data,
     salvar_csv,
     carregar_csv
 )
