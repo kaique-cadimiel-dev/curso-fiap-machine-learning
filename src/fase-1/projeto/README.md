@@ -1,61 +1,89 @@
 # Farm Tech Solution - Play no desenvolvimento
 
-## Instruções para rodar projeto
+Este projeto é uma solução tecnológica para a Startup FarmTech Solutions, focado em auxiliar fazendas na transição para a Agricultura Digital. A aplicação integra Python para o manejo de dados e insumos, e R para análises estatísticas e integração com APIs meteorológicas.
 
-1. Clone o repositório
+---
+
+## 📂 Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
+- **`main.py`**: Ponto de entrada da aplicação Python. Contém o menu principal e a lógica de interação com o usuário.
+- **`utils.py`**: Funções auxiliares para cálculos de manejo de insumos, operações de CRUD (Create, Read, Update, Delete) e persistência de dados.
+- **`data.json`**: Arquivo utilizado para armazenar os dados inseridos pelo usuário (vetores de culturas e cálculos).
+- **`analise.R`**: Script em R responsável por realizar análises estatísticas básicas (média, desvio padrão, etc.) sobre os dados gerados.
+- **`wheater.r`**: Script em R que se conecta à API HG Brasil Weather para buscar e exibir a previsão do tempo de uma cidade informada.
+- **`.env`**: Arquivo de configuração para variáveis de ambiente (contém a `API_KEY` para a previsão do tempo).
+- **`requirements.txt`**: Lista de dependências Python necessárias para o projeto.
+- **`Uso de VANTs em Agricultura de Precisão.pdf`**: Resumo do artigo solicitado na disciplina de Formação Social.
+
+---
+
+## 🛠️ Dependências
+
+### Python
+As bibliotecas necessárias estão listadas no `requirements.txt`:
+- `tabulate`: Para formatação de tabelas no terminal.
+
+### R
+Os seguintes pacotes devem estar instalados no ambiente R:
+- `httr2`: Para requisições HTTP à API.
+- `dotenv`: Para leitura do arquivo `.env`.
+- `jsonlite`: Para processamento de dados JSON.
+
+---
+
+## 🚀 Como Utilizar
+
+### 1. Configuração Inicial
+Clone o repositório e navegue até a pasta do projeto:
 ```shell
 git clone git@github.com:kaique-cadimiel-dev/curso-fiap-machine-learning.git
-
+cd src/fase-1/projeto
 ```
 
-2. Navegue até a pasta do projeto
-```shell
-cd curso-fiap-machine-learning/src/fase-1/projeto
-
-```
-
-3. Instale as dependências necessárias
+### 2. Instalação das Dependências
+Instale as dependências do Python:
 ```shell
 pip install -r requirements.txt
-
 ```
 
-4. Execute o programa principal
+Certifique-se de que os pacotes do R estão instalados. Você pode instalá-los via terminal R:
+```R
+install.packages(c("httr2", "dotenv", "jsonlite"))
+```
+
+### 3. Configuração da API Key
+Crie ou edite o arquivo `.env` na raiz do projeto e adicione sua chave da HG Brasil Weather:
+```env
+API_KEY=sua_chave_aqui
+```
+
+### 4. Execução
+Inicie a aplicação principal:
 ```shell
 python main.py
-
 ```
 
-## Introdução:
+### Menu de Opções:
+1.  **Inserir dados**: Calcula o manejo de insumos para culturas (ex: Café, Soja) e salva.
+2.  **Listar dados**: Exibe os dados armazenados em formato de tabela.
+3.  **Atualizar dados**: Permite modificar um registro existente.
+4.  **Deletar dados**: Remove um registro da lista.
+5.  **Ver Estatísticas (R)**: Executa o script R para análise dos dados.
+6.  **Ver Previsão do Tempo (R)**: Solicita uma cidade (ex: `Belo Horizonte,MG`) e exibe o clima atual via API.
+0.  **Sair**: Encerra a aplicação.
 
-Você e seu grupo estão na Startup FarmTech Solutions, trabalhando na equipe de Dev., e obviamente, vocês podem usar o ChatGPT ou Germini ou outra Inteligência Artificial (IA) de seu interesse para ajudar com essa tarefa — a FIAP não condena o uso de IAs em seus estudos, desde que o aluno tenha o olhar crítico para filtrar os erros e acertos das respostas propostas por elas.
+---
 
-A FarmTech Solutions fechou um contrato com uma fazenda que investe em inovação e tecnologia para aumentar sua produtividade e pretende migrar para a Agricultura Digital. E para atender esse importante cliente, a FarmTech vai começar a pôr a mão na massa, desenvolvendo uma aplicação em Python que tenha:
+## 📝 Requisitos do Projeto (FIAP)
+- Suporte a pelo menos 2 tipos de culturas.
+- Cálculos de área e manejo de insumos.
+- Organização dos dados em vetores.
+- CRUD completo (Entrada, Saída, Atualização, Deleção).
+- Integração R/Python.
+- Conexão com API meteorológica externa em R.
 
-* a. O projeto em Python deve dar suporte a 2 tipos de culturas. O grupo vai decidir quais culturas trabalhar. Pense nas principais culturas do seu estado.
+## API Previsão do Tempo
 
-* b. Cálculo de área de plantio para cada cultura. O grupo decide qual tipo de figura geométrica deve-se calcular como área plantada para cada tipo de cultura;
-
-* c. Cálculo do manejo de insumos. O grupo escolhe o tipo de cultura, o produto e a quantidade necessária, como por exemplo, aplicar fosfato no café e pulverizar 500 mL/metro com o trator. Quantas ruas a lavoura têm? E assim, quantos litros serão necessários?
-
-* d. Os dados devem estar organizados em vetores;
-
-* e. A aplicação em Python precisa ter menu de opções para:
-
-Entrada de dados (entrada dos dados para realizar os cálculos);
-Saída de dados (como impressões de dados no terminal);
-Atualização de dados numa posição qualquer do vetor;
-Deleção de dados do vetor de dados;
-Ter a opção “sair do programa”;
-
-* f. Usar rotinas de loop e decisão.
-
-* g. Na sequência, usar esses dados para desenvolver uma aplicação em R para calcular dados estatísticos básicos, como média e desvio. Deve-se usar o GitHub para versionamento do projeto, trabalhando em equipe para simular um ambiente de desenvolvimento colaborativo.
-
-* h. Na disciplina de Formação Social, o grupo resumirá o artigo disponível no Google Acadêmico (https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1003485/1/CAP8.pdf). O resumo é de até 1 folha A4, letra Arial 11, espaçamento 1 entre linhas, margens direita e esquerda em 2 cm.
-
-Ir além: usando R (e não Python), conectar-se a uma API meteorológica pública para coletar dados climáticos, processar e exibir as informações meteorológicas via texto simples no terminal.
-
-## O que precisa entregar?
-
-Compacte todos os arquivos num único arquivo ZIP: Python, R, o resumo do artigo e o link do vídeo no Youtube. Além disso, grave um vídeo simples, de até 5 minutos, usando o seu celular ou um gravador de tela simples (por exemplo, streamyard.com) mostrando a sua tela do computador, comprovando o funcionamento completo da sua aplicação Python e R. Poste o seu vídeo no YouTube, marque como “não listado” (para deixá-lo no privado) e adicione o link à um arquivo TXT no pacote do ZIP.
+<a href="https://hgbrasil.com/docs/weather">Acessar HG Brasil Weather API</a>

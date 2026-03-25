@@ -1,1 +1,23 @@
-.venv
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# IDEs e Sistema
+.DS_Store
+.vscode/
+.idea/
+
+# Dados Temporários
+*.log

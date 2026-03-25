@@ -10,7 +10,7 @@ from utils import (
 
 def menu():
     vetor_dados = carregar_csv()
-
+    print("🚀 Bem-vindo ao Sistema de \nManejo de Insumos Agrícolas!")
     while True:
         print("""
 ========= MENU =========
@@ -19,6 +19,7 @@ def menu():
 3 - Atualizar dados
 4 - Deletar dados
 5 - Ver Estatísticas (R)
+6 - Ver Previsão do Tempo (R)
 0 - Sair
 ========================
 """)
@@ -51,6 +52,14 @@ def menu():
         elif opcao == "5":
             print("\n📊 Executando análise estatística em R...\n")
             os.system("Rscript analise.R")
+
+        elif opcao == "6":
+            cidade = input("Digite o nome da cidade (ex: Belo Horizonte,MG): ")
+            if cidade:
+                print(f"\n🌤️ Buscando previsão do tempo para: {cidade}...\n")
+                os.system(f'Rscript wheater.r "{cidade}"')
+            else:
+                print("❌ Nome da cidade inválido!")
 
         elif opcao == "0":
             print("👋 Saindo do programa...")
